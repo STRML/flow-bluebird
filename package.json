@@ -1,0 +1,28 @@
+{
+  "name": "flow-bluebird",
+  "version": "0.0.1",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/STRML/flow-bluebird.git"
+  },
+  "author": "Samuel Reed <samuel.trace.reed@gmail.com> (http://strml.net/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/STRML/flow-bluebird/issues"
+  },
+  "homepage": "https://github.com/STRML/flow-bluebird#readme",
+  "dependencies": {
+    "bluebird": "^3.0.6"
+  },
+  "devDependencies": {
+    "babel": "^6.3.13",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13"
+  }
+}
