@@ -1,10 +1,10 @@
 // @flow
 
-import Promise from 'bluebird';
+// import Promise from 'bluebird';
 
-async function testThen(a: number): Promise<number> {
+async function testThen(a: number): Promise<string> {
   let output = await doubleAsync(a);
-  return output / 2;
+  return output.trim(); // This should error!
 }
 
 async function testJoin(a: number): Promise<number>{
@@ -28,7 +28,7 @@ function doubleAsync(input: number): Promise<number> {
 }
 
 async function printResult() {
-  console.log(await testThen(1));
+  console.log(await testThen(1) + false);
   console.log(await testJoin(1));
 }
 

@@ -9,4 +9,3 @@ test.js
 interfaces/
 
 [options]
-module.name_mapper='bluebird' -> '<PROJECT_ROOT>/util/bluebird'
