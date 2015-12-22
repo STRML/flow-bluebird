@@ -2,7 +2,9 @@
 
 Attempting to override builtin Promise with Bluebird and make async/await work.
 
-This appears to work, but I'm unuse of the ramifications of redefining $await from:
+This test is with Flow 0.20.1.
+
+In the `possibleSolution` branch, I define `$await` from:
 
 ```js
 declare function $await<T>(p: Promise<T> | T): T;
@@ -16,15 +18,17 @@ declare function $await<T>(p: Promise<T>): T;
 
 With the union type, it appears Flow is not unwrapping the promise.
 
+Now with v0.20.1, we have better error messages, so I thought I'd try it again with the original definition.
+
 Output is:
 
 ```
 $ flow
-test.js:7
-  7:   return output.trim(); // This should error!
-                     ^^^^ property `trim`. Property not found in
-  7:   return output.trim(); // This should error!
-              ^^^^^^ Number
+test.js:6
+  6:   let output = await doubleAsync(a);
+                          ^^^^^^^^^^^^^^ Promise. This type is incompatible with
+703: declare function $await<T>(p: Promise<T> | T): T;
+                                   ^^^^^^^^^^^^^^ union: type application of identifier `Promise` | type parameter `T` of await. See: interfaces/await.js:703
 
 test.js:21
  21:   return await Promise.doesntExist(doubleAsync(a));
@@ -34,12 +38,10 @@ test.js:21
 
 test.js:31
  31:   console.log(await testThen(1) + false);
-                                       ^^^^^ boolean. This type is incompatible with
- 31:   console.log(await testThen(1) + false);
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^ string
+                         ^^^^^^^^^^^ Promise. This type is incompatible with
+703: declare function $await<T>(p: Promise<T> | T): T;
+                                   ^^^^^^^^^^^^^^ union: type application of identifier `Promise` | type parameter `T` of await. See: interfaces/await.js:703
 
 
 Found 3 errors
-```
 
-This typechecks as expected.

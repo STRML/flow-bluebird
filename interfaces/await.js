@@ -700,4 +700,4 @@ declare class Promise<R> {
   static each<R, U>(values: R[] | Thenable<R[]>, iterator: (item: R, index: number, arrayLength: number) => U | Thenable<U>): Promise<R[]>;
 }
 
-declare function $await<T>(p: Promise<T>): T;
+declare function $await<T>(p: Promise<T> | T): T;
